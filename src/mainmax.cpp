@@ -28,7 +28,7 @@ void dijkstra(int start, int end, int n) {
         for (j = 0; j < n; j++) {
             if (graph[u][j] && !visited[j] && dist[u] != INT_MIN && dist[u] + (-graph[u][j]) > dist[j]) {
                 dist[j] = dist[u] + (-graph[u][j]);
-                parent[j] = u; // Çàïîìèíàåì ïðåäêà äëÿ êàæäîé âåðøèíû
+                parent[j] = u; // Ð—Ð°Ð¿Ð¾Ð¼Ð¸Ð½Ð°ÐµÐ¼ Ð¿Ñ€ÐµÐ´ÐºÐ° Ð´ÑÐ» ÐºÐ°Ð¶Ð´Ð¾Ð¹ Ð²ÐµÑ€ÑˆÐ¸Ð½Ñ‹
             }
         }
     }
@@ -39,12 +39,12 @@ void dijkstra(int start, int end, int n) {
         printf("Path: ");
         int path[MAXN], len = 0;
         int current = end-1;
-        while (current != start-1) { // Âîññòàíàâëèâàåì ìàðøðóò, íà÷èíàÿ ñ êîíöà
+        while (current != start-1) { // Ð’Ð¾ÑÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¼Ð°Ñ€ÑˆÑ€ÑƒÑ‚Ð° Ð½Ð°Ñ‡Ð¸Ð½Ð°Ñ Ñ ÐºÐ¾Ð½Ñ†Ð° 
             path[len++] = current;
             current = parent[current];
         }
         path[len++] = start-1;
-        for (i = len-1; i >= 0; i--) { // Âûâîäèì ìàðøðóò â îáðàòíîì ïîðÿäêå
+        for (i = len-1; i >= 0; i--) { // Ð’Ñ‹Ð²Ð¾Ð´Ð¸Ð¼ Ð¼Ð°Ñ€ÑˆÑ€ÑƒÑ‚ Ð² Ð¾Ð±Ñ€Ð°Ñ‚Ð½Ð¾Ð¼ Ð¿Ð¾Ñ€ÑÐ´ÐºÐµ 
             printf("%d ", path[i]+1);
             if (i > 0) {
                 printf("-> ");
@@ -64,14 +64,14 @@ int main() {
    	graph[i][i] = 0;
     for (int j = i + 1; j<SIZE; j++) {
       temp=rand()%10;
-      printf("Ââåäèòå ðàññòîÿíèå %d - %d: %d\n ", i + 1, j + 1, temp);
+      printf("Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã°Ã Ã±Ã±Ã²Ã®Ã¿Ã­Ã¨Ã¥ %d - %d: %d\n ", i + 1, j + 1, temp);
       graph[i][j] = temp;
       graph[j][i] = temp;
     }
 
   }
 
-  // Âûâîä ìàòðèöû ñâÿçåé
+  // Ð’Ñ‹Ð²Ð¾Ð´ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹ ÑÐ²ÑÐ·ÐµÐ¹ 
   for (int i = 0; i<SIZE; i++)
   {
     for (int j = 0; j<SIZE; j++)
