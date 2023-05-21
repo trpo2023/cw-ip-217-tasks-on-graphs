@@ -1,7 +1,7 @@
-TARGET = lab_9
+TARGET = graphs
 CC = gcc
 CFLAGS =
-LIBS = 
+LIBS =
 
 PREF_SRC = ./src/
 PREF_OBJ = ./obj/
