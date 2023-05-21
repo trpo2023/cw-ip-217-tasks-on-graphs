@@ -6,6 +6,7 @@
 #include "graphs.h"
 #include "queue.h"
 #include "stacknode.h"
+#include "listnode.h"
 
 #ifndef GRAPHS_C
 #define GRAPHS_C
@@ -14,7 +15,9 @@ Graph *createGraph(Edge *edges, int edgesSize, int graphSize)
 {
     Graph *graph = (Graph *)malloc(sizeof(Graph));
     graph->head = (Node **)malloc(sizeof(Node *) * graphSize);
-    graph->visited = malloc(graphSize * sizeof(int));
+    graph->numVertices = graphSize;
+    graph->visited = malloc(graph->numVertices * sizeof(int));
+    graph->passed = NULL;
 
     for (int i = 0; i < graphSize; i++)
     {
@@ -54,10 +57,12 @@ void printGraph(Graph *graph, int size)
     printf("\n");
 }
 
-void clearVisited(Graph *graph, int graphSize)
+void clearVisited(Graph *graph)
 {
-    for (int i = 0; i < graphSize; i++)
+    for (int i = 0; i < graph->numVertices; i++)
         graph->visited[i] = 0;
+
+    freeList(&(graph->passed));
 }
 
 void dfs(Graph *graph, int vertex)
@@ -135,40 +140,67 @@ bool getPath(Graph *graph, int startVertex, int endVertex, StackNode **path)
     }
 }
 
-// StackNode *getPathAllWrap(Graph *graph, int startVertex, int endVertex)
-// {
-//     Node *temp = graph->head[startVertex];
-//     StackNode *paths = NULL;
-//     if (startVertex == NULL)
-//         return paths;
-//     getPathAll(graph, startVertex, endVertex, &paths);
-//     return paths;
-// }
+StackNode *getPathAllWrap(Graph *graph, int startVertex, int endVertex)
+{
+    Node *temp = graph->head[startVertex];
+    StackNode *paths = NULL;
+    if (startVertex < 0 || startVertex > graph->numVertices)
+        return paths;
+    getPathAll(graph, startVertex, endVertex, &paths);
+    return paths;
+}
 
-// void getPathAll(Graph *graph, int startVertex, int endVertex, StackNode **path)
-// {
-//     Node *temp = graph->head[startVertex];
-//     graph->visited[startVertex] = 1;
+static void getPathAll(Graph *graph, int startVertex, int endVertex, StackNode **paths)
+{
+    if (startVertex == endVertex)
+    {
+        StackNode *pathTemp = NULL;
+        ListNode *tv = graph->passed;
+        // printIntListNode(graph->passed);
+        pathTemp = pushIntStackNode(pathTemp, endVertex);
+        while (tv)
+        {
+            pathTemp = pushIntStackNode(pathTemp, ((int *)tv->data)[0]);
+            tv = tv->prev;
+        }
 
-//     if (startVertex == endVertex)
-//     {
-//         *path = pushIntStackNode(*path, startVertex);
-//         return true;
-//     }
+        printIntStackNode(pathTemp);
+        *paths = pushStackNode(*paths, pathTemp, sizeof(StackNode *));
+        return;
+    }
 
-//     while (temp != NULL)
-//     {
-//         int connectedVertex = temp->vertex;
+    Node *temp = graph->head[startVertex];
+    graph->passed = pushIntListNode(graph->passed, startVertex);
 
-//         if (graph->visited[connectedVertex] == 0)
-//             if (getPath(graph, connectedVertex, endVertex, path))
-//             {
-//                 *path = pushIntStackNode(*path, startVertex);
-//                 return true;
-//             }
+    while (temp)
+    {
+        int currentVertex = temp->vertex;
 
-//         temp = temp->next;
-//     }
-// }
+        if (!findListNode(graph->passed, currentVertex))
+            getPathAll(graph, currentVertex, endVertex, paths);
+
+        temp = temp->next;
+    }
+    ListNode *rem = findListNode(graph->passed, startVertex);
+    graph->passed = removeListNode(rem);
+}
+
+void printPaths(StackNode *paths)
+{
+    while (paths)
+    {
+        printIntStackNode((StackNode *)(paths->data));
+        paths = paths->prev;
+    }
+}
+
+void freePaths(StackNode *paths)
+{
+    while (paths)
+    {
+        freeStack(&paths);
+        paths = paths->prev;
+    }
+}
 
 #endif

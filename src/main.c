@@ -49,10 +49,9 @@ int main()
     // printf("BFS\n");
     // bfs(graph, 1);
 
-    StackNode *path = NULL;
-    getPath(graph, 6, 7, &path);
-    printIntStackNode(path);
+    StackNode *paths = getPathAllWrap(graph, 4, 7);
+    printPaths(paths);
+    freePaths(paths);
 
-    freeStack(&path);
     return 0;
 }
