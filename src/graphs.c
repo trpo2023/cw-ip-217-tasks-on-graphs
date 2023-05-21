@@ -155,17 +155,17 @@ static void getPathAll(Graph *graph, int startVertex, int endVertex, StackNode *
     if (startVertex == endVertex)
     {
         StackNode *pathTemp = NULL;
-        ListNode *tv = graph->passed;
-        // printIntListNode(graph->passed);
+        ListNode *tv = findHead(graph->passed);
         pathTemp = pushIntStackNode(pathTemp, endVertex);
         while (tv)
         {
-            pathTemp = pushIntStackNode(pathTemp, ((int *)tv->data)[0]);
-            tv = tv->prev;
+            pathTemp = pushIntStackNode(pathTemp, ((int*)tv->data)[0]);
+            tv = tv->next;
         }
 
-        printIntStackNode(pathTemp);
         *paths = pushStackNode(*paths, pathTemp, sizeof(StackNode *));
+        printIntStackNode((*paths)->data);
+
         return;
     }
 

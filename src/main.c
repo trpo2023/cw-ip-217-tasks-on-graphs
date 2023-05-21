@@ -50,7 +50,7 @@ int main()
     // bfs(graph, 1);
 
     StackNode *paths = getPathAllWrap(graph, 4, 7);
-    printPaths(paths);
+    // printPaths(paths);
     freePaths(paths);
 
     return 0;

@@ -118,7 +118,6 @@ ListNode *pushIntListNode(ListNode *sn, int data)
 
 void printIntListNode(ListNode *sn)
 {
-    sn = findHead(sn);
     while (sn)
     {
         printf("%d ", ((int*)sn->data)[0]);

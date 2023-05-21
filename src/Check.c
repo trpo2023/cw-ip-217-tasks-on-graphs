@@ -2,6 +2,8 @@
 #include <stdbool.h>
 #include <ctype.h>
 
+#include "check.h"
+
 #ifndef CHECK_C
 #define CHECK_C
 
