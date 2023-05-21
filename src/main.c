@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "graphs.h"
+#include "stacknode.h"
 
 int main()
 {
@@ -40,12 +42,17 @@ int main()
     struct Graph *graph = createGraph(edges, n, graphSize);
     printGraph(graph, graphSize);
 
-    printf("DFS\n");
-    dfs(graph, 1);
-    clearVisited(graph, graphSize);
-    printf("\n");
-    printf("BFS\n");
-    bfs(graph, 1);
+    // printf("DFS\n");
+    // dfs(graph, 1);
+    // clearVisited(graph, graphSize);
+    // printf("\n");
+    // printf("BFS\n");
+    // bfs(graph, 1);
 
+    StackNode *path = NULL;
+    getPath(graph, 6, 7, &path);
+    printIntStackNode(path);
+
+    freeStack(&path);
     return 0;
 }

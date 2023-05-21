@@ -1,3 +1,6 @@
+#include <stdbool.h>
+#include "stacknode.h"
+
 #ifndef GRAPHS_H
 #define GRAPHS_H
 
@@ -24,5 +27,6 @@ void printGraph(Graph *graph, int size);
 void clearVisited(Graph *graph, int graphSize);
 void dfs(struct Graph *graph, int vertex);
 void bfs(struct Graph *graph, int startVertex);
+bool getPath(Graph *graph, int startVertex, int endVertex, StackNode **path);
 
 #endif
