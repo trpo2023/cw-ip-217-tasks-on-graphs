@@ -1,4 +1,4 @@
-TARGET = lab_9
+TARGET = graphs
 CC = gcc
 CFLAGS =
 LIBS = 
