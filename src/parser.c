@@ -6,8 +6,6 @@
 
 #define MAX_VERTICES 100
 
-int **readFile(char *fileName);
-
 int **readFile(char *fileName)
 {
     FILE *input;
