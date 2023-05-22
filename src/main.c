@@ -42,15 +42,8 @@ int main()
     struct Graph *graph = createGraph(edges, n, graphSize);
     printGraph(graph, graphSize);
 
-    // printf("DFS\n");
-    // dfs(graph, 1);
-    // clearVisited(graph, graphSize);
-    // printf("\n");
-    // printf("BFS\n");
-    // bfs(graph, 1);
-
     StackNode *paths = getPathAllWrap(graph, 4, 7);
-    // printPaths(paths);
+    printPaths(paths);
     freePaths(paths);
 
     return 0;

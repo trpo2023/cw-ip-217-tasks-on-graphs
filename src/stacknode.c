@@ -18,6 +18,17 @@ StackNode *pushStackNode(StackNode *sn, void *data, unsigned int size)
     return t;
 }
 
+StackNode *pushStackInStackNode(StackNode *sn, StackNode* data)
+{
+    StackNode *t = (StackNode *)malloc(sizeof(StackNode));
+    t->data = data;
+
+    t->prev = sn;
+    t->size = sn ? sn->size + 1 : 1;
+
+    return t;
+}
+
 StackNode *pushIntStackNode(StackNode *sn, int data)
 {
     int* t = malloc(sizeof(int));

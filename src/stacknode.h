@@ -9,6 +9,7 @@ typedef struct StackNode
 } StackNode;
 
 StackNode *pushStackNode(StackNode *sn, void *data, unsigned int size);
+StackNode *pushStackInStackNode(StackNode *sn, StackNode* data);
 StackNode *pushIntStackNode(StackNode *sn, int data);
 StackNode *popStackNode(StackNode *sn);
 void freeStack(StackNode **sn);
