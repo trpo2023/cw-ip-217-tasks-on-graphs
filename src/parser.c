@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#ifndef PARSER_H
-#define PARSER_H
+#ifndef PARSER_C
+#define PARSER_C
 
 #define MAX_VERTICES 100
 
