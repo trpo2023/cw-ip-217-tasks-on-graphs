@@ -2,9 +2,10 @@
 #include "../thirdparty/ctest.h"
 
 #include <stdio.h>
-
+#define FILENAME "test_input.txt"
 CTEST(INPUT_CHECK, READER1)
 {
+    const char* filename = FILENAME;
     FILE *fp = fopen(filename, "r");
     bool expec = true;
     if (fp == NULL)
@@ -19,6 +20,7 @@ CTEST(INPUT_CHECK, READER1)
 
 CTEST(INPUT_CHECK, READER2)
 {
+    const char* filename = FILENAME;
     FILE *fp = fopen(filename, "r");
     bool expec = false;
     if (fp == NULL)
@@ -33,6 +35,7 @@ CTEST(INPUT_CHECK, READER2)
 
 CTEST(INPUT_CHECK, FIRST_STRING1)
 {
+    const char* filename = FILENAME;
     FILE *fp = fopen(filename, "r");
     int n;
     bool expec = true;
@@ -53,6 +56,7 @@ CTEST(INPUT_CHECK, FIRST_STRING1)
 
 CTEST(INPUT_CHECK, FIRST_STRING2)
 {
+    const char* filename = FILENAME;
     FILE *fp = fopen(filename, "r");
     int n;
     bool expec = false;
@@ -73,6 +77,7 @@ CTEST(INPUT_CHECK, FIRST_STRING2)
 
 CTEST(INPUT_CHECK, CHECK_MATRIX1)
 {
+    const char* filename = FILENAME;
     FILE *fp = fopen(filename, "r");
     int n;
     if (fscanf(fp, "%d", &n) != 1)
@@ -113,6 +118,7 @@ CTEST(INPUT_CHECK, CHECK_MATRIX1)
 
 CTEST(INPUT_CHECK, CHECK_MATRIX2)
 {
+    const char* filename = FILENAME;
     FILE *fp = fopen(filename, "r");
     int n;
     if (fscanf(fp, "%d", &n) != 1)
