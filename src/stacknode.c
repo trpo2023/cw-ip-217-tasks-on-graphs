@@ -18,7 +18,7 @@ StackNode *pushStackNode(StackNode *sn, void *data, unsigned int size)
     return t;
 }
 
-StackNode *pushStackInStackNode(StackNode *sn, StackNode* data)
+StackNode *pushStackInStackNode(StackNode *sn, StackNode *data)
 {
     StackNode *t = (StackNode *)malloc(sizeof(StackNode));
     t->data = data;
@@ -31,9 +31,9 @@ StackNode *pushStackInStackNode(StackNode *sn, StackNode* data)
 
 StackNode *pushIntStackNode(StackNode *sn, int data)
 {
-    int* t = malloc(sizeof(int));
+    int *t = malloc(sizeof(int));
     t[0] = data;
-    sn = pushStackNode(sn, t, sizeof(int*));
+    sn = pushStackNode(sn, t, sizeof(int *));
 
     free(t);
     return sn;
@@ -63,7 +63,7 @@ void printIntStackNode(StackNode *sn)
 {
     while (sn)
     {
-        printf("%d ", ((int*)sn->data)[0]);
+        printf("%d ", ((int *)sn->data)[0]);
         sn = sn->prev;
     }
     printf("\n");

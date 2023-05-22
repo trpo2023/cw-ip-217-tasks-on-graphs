@@ -32,8 +32,13 @@ void bfs(struct Graph *graph, int startVertex);
 bool getPath(Graph *graph, int startVertex, int endVertex, StackNode **path);
 StackNode *getPathAllWrap(Graph *graph, int startVertex, int endVertex);
 static void getPathAll(Graph *graph, int startVertex, int endVertex, StackNode **paths);
+int calculateWeightForPath(Graph *graph, StackNode *path);
+StackNode *findMinPath(Graph *graph, StackNode *paths);
+StackNode *findMaxPath(Graph *graph, StackNode *paths);
 
-void printPaths(StackNode* paths);
-void freePaths(StackNode* paths);
+void printPaths(StackNode *paths);
+void printWithWeightPaths(StackNode *paths);
+void printPath(StackNode *path);
+void freePaths(StackNode *paths);
 
 #endif

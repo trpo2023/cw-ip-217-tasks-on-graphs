@@ -43,7 +43,21 @@ int main()
     printGraph(graph, graphSize);
 
     StackNode *paths = getPathAllWrap(graph, 4, 7);
+    printf("Detected paths:\n");
     printPaths(paths);
+    printf("\n");
+
+    printf("Min paths:\n");
+    StackNode *minPath = findMinPath(graph, paths);
+    printPath(minPath);
+    printf("Weight: %d\n", calculateWeightForPath(graph, minPath));
+    printf("\n");
+
+    printf("Max paths:\n");
+    StackNode *maxPath = findMaxPath(graph, paths);
+    printPath(maxPath);
+    printf("Weight: %d\n", calculateWeightForPath(graph, maxPath));
+
     freePaths(paths);
 
     return 0;

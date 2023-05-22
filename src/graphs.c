@@ -158,7 +158,7 @@ static void getPathAll(Graph *graph, int startVertex, int endVertex, StackNode *
         ListNode *tv = findHead(graph->passed);
         while (tv)
         {
-            pathTemp = pushIntStackNode(pathTemp, ((int*)tv->data)[0]);
+            pathTemp = pushIntStackNode(pathTemp, ((int *)tv->data)[0]);
             tv = tv->next;
         }
         pathTemp = pushIntStackNode(pathTemp, endVertex);
@@ -183,6 +183,63 @@ static void getPathAll(Graph *graph, int startVertex, int endVertex, StackNode *
     graph->passed = removeListNode(rem);
 }
 
+int calculateWeightForPath(Graph *graph, StackNode *path)
+{
+    int weight = 0;
+    while (path->prev)
+    {
+        int currentVertex = *((int *)(path->data));
+        int nextVertex = ((int *)(path->prev->data))[0];
+        Node *node = graph->head[currentVertex];
+        while (node->vertex != nextVertex)
+            node = node->next;
+
+        weight += node->weight;
+
+        path = path->prev;
+    }
+    return weight;
+}
+
+StackNode *findMinPath(Graph *graph, StackNode *paths)
+{
+    if(!paths) return NULL;
+    StackNode *minPath = paths->data;
+    int minPathWeight = calculateWeightForPath(graph, paths->data);
+    paths = paths->prev;
+    while (paths)
+    {
+        int pathWeight = calculateWeightForPath(graph, paths->data);
+        if (pathWeight < minPathWeight)
+        {
+            minPathWeight = pathWeight;
+            minPath = paths->data;
+        }
+        paths = paths->prev;
+    }
+    return minPath;
+}
+
+StackNode *findMaxPath(Graph *graph, StackNode *paths)
+{
+    if(!paths) return NULL;
+    StackNode *maxPath = paths->data;
+    int maxPathWeight = calculateWeightForPath(graph, paths->data);
+    paths = paths->prev;
+    while (paths)
+    {
+        int pathWeight = calculateWeightForPath(graph, paths->data);
+        if (pathWeight > maxPathWeight)
+        {
+            maxPathWeight = pathWeight;
+            maxPath = paths->data;
+        }
+        paths = paths->prev;
+    }
+
+    return maxPath;
+}
+
 void printPaths(StackNode *paths)
 {
     while (paths)
@@ -192,11 +249,17 @@ void printPaths(StackNode *paths)
     }
 }
 
+void printPath(StackNode *path)
+{
+    printIntStackNode(path);
+}
+
 void freePaths(StackNode *paths)
 {
     while (paths)
     {
-        freeStack(&paths);
+        StackNode* t = (StackNode*)(paths->data);
+        freeStack(&t);
         paths = paths->prev;
     }
 }
