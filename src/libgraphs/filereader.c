@@ -4,12 +4,11 @@
 #ifndef FILEREADER_C
 #define FILEREADER_C
 
-int **readMatrixFile(char *fileName, int *size_out)
+int** readMatrixFile(char* fileName, int* size_out)
 {
-    FILE *file;
+    FILE* file;
     file = fopen(fileName, "r");
-    if (file == NULL)
-    {
+    if (file == NULL) {
         printf("Error opening file.\n");
         return NULL;
     }
@@ -17,15 +16,13 @@ int **readMatrixFile(char *fileName, int *size_out)
     fscanf(file, "%d", &(*size_out));
     int size = *size_out;
 
-    int **adj_matrix = (int **)malloc(size * sizeof(int *));
+    int** adj_matrix = (int**)malloc(size * sizeof(int*));
     for (int i = 0; i < size; i++)
-        adj_matrix[i] = (int *)malloc(size * sizeof(int));
+        adj_matrix[i] = (int*)malloc(size * sizeof(int));
 
     for (int i = 0; i < size; i++)
-        for (int j = 0; j < size; j++)
-        {
-            if (feof(file))
-            {
+        for (int j = 0; j < size; j++) {
+            if (feof(file)) {
                 printf("Cannot read file\n");
                 fclose(file);
                 for (int i = 0; i < size; i++)
@@ -34,8 +31,7 @@ int **readMatrixFile(char *fileName, int *size_out)
                 return NULL;
             }
             fscanf(file, "%d", &adj_matrix[i][j]);
-            if ((!feof(file) && i == size - 1 && j == size - 1))
-            {
+            if ((!feof(file) && i == size - 1 && j == size - 1)) {
                 printf("Cannot read file\n");
                 fclose(file);
                 for (int i = 0; i < size; i++)

@@ -8,16 +8,16 @@
 CTEST(graphs, all_path)
 {
     int graphSize, edgesSize;
-    int **matrix;
+    int** matrix;
     matrix = readMatrixFile("test/data/graph.txt", &graphSize);
-    Edge *edges = matrixToEdges(matrix, graphSize, &edgesSize);
-    Graph *graph = createGraph(edges, edgesSize, graphSize);
+    Edge* edges = matrixToEdges(matrix, graphSize, &edgesSize);
+    Graph* graph = createGraph(edges, edgesSize, graphSize);
 
-    StackNode *paths = getPathAllWrap(graph, 0, 2);
-    StackNode *path = NULL;
+    StackNode* paths = getPathAllWrap(graph, 0, 2);
+    StackNode* path = NULL;
 
-    StackNode *expectedPath = NULL;
-    path = (StackNode *)paths->data;
+    StackNode* expectedPath = NULL;
+    path = (StackNode*)paths->data;
     expectedPath = pushIntStackNode(expectedPath, 0);
     expectedPath = pushIntStackNode(expectedPath, 1);
     expectedPath = pushIntStackNode(expectedPath, 3);
@@ -25,14 +25,14 @@ CTEST(graphs, all_path)
 
     ASSERT_EQUAL(true, isIntStackEqual(expectedPath, path));
 
-    path = (StackNode *)paths->prev->data;
+    path = (StackNode*)paths->prev->data;
     freeStack(&expectedPath);
     expectedPath = pushIntStackNode(expectedPath, 0);
     expectedPath = pushIntStackNode(expectedPath, 2);
 
     ASSERT_EQUAL(true, isIntStackEqual(expectedPath, path));
 
-    path = (StackNode *)paths->prev->prev->data;
+    path = (StackNode*)paths->prev->prev->data;
     freeStack(&expectedPath);
     expectedPath = pushIntStackNode(expectedPath, 0);
     expectedPath = pushIntStackNode(expectedPath, 3);
@@ -46,15 +46,15 @@ CTEST(graphs, all_path)
 CTEST(graphs, min_path)
 {
     int graphSize, edgesSize;
-    int **matrix;
+    int** matrix;
     matrix = readMatrixFile("test/data/graph.txt", &graphSize);
-    Edge *edges = matrixToEdges(matrix, graphSize, &edgesSize);
-    Graph *graph = createGraph(edges, edgesSize, graphSize);
+    Edge* edges = matrixToEdges(matrix, graphSize, &edgesSize);
+    Graph* graph = createGraph(edges, edgesSize, graphSize);
 
-    StackNode *paths = getPathAllWrap(graph, 0, 2);
-    StackNode *minPath = findMinPath(graph, paths);
+    StackNode* paths = getPathAllWrap(graph, 0, 2);
+    StackNode* minPath = findMinPath(graph, paths);
 
-    StackNode *rightPath = NULL;
+    StackNode* rightPath = NULL;
     rightPath = pushIntStackNode(rightPath, 0);
     rightPath = pushIntStackNode(rightPath, 3);
     rightPath = pushIntStackNode(rightPath, 2);
@@ -66,15 +66,15 @@ CTEST(graphs, min_path)
 CTEST(graphs, max_path)
 {
     int graphSize, edgesSize;
-    int **matrix;
+    int** matrix;
     matrix = readMatrixFile("test/data/graph.txt", &graphSize);
-    Edge *edges = matrixToEdges(matrix, graphSize, &edgesSize);
-    Graph *graph = createGraph(edges, edgesSize, graphSize);
+    Edge* edges = matrixToEdges(matrix, graphSize, &edgesSize);
+    Graph* graph = createGraph(edges, edgesSize, graphSize);
 
-    StackNode *paths = getPathAllWrap(graph, 0, 2);
-    StackNode *maxPath = findMaxPath(graph, paths);
+    StackNode* paths = getPathAllWrap(graph, 0, 2);
+    StackNode* maxPath = findMaxPath(graph, paths);
 
-    StackNode *rightPath = NULL;
+    StackNode* rightPath = NULL;
     rightPath = pushIntStackNode(rightPath, 0);
     rightPath = pushIntStackNode(rightPath, 1);
     rightPath = pushIntStackNode(rightPath, 3);

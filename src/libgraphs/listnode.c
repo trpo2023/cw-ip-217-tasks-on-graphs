@@ -7,14 +7,13 @@
 #ifndef LISTNODE_C
 #define LISTNODE_C
 
-ListNode *pushListNode(ListNode *sn)
+ListNode* pushListNode(ListNode* sn)
 {
-    ListNode *t = (ListNode *)malloc(sizeof(ListNode));
+    ListNode* t = (ListNode*)malloc(sizeof(ListNode));
     t->data = NULL;
     if (!sn)
         t->next = t->prev = NULL;
-    else
-    {
+    else {
         t->prev = sn;
         sn->next = t;
         t->next = NULL;
@@ -23,7 +22,7 @@ ListNode *pushListNode(ListNode *sn)
     return t;
 }
 
-static ListNode *popListNode(ListNode *sn)
+static ListNode* popListNode(ListNode* sn)
 {
     if (!sn)
         return NULL;
@@ -31,24 +30,18 @@ static ListNode *popListNode(ListNode *sn)
     if (sn->data)
         free(sn->data);
 
-    ListNode *t;
-    if (sn->next == NULL)
-    {
+    ListNode* t;
+    if (sn->next == NULL) {
         if (sn->prev == NULL)
             t = NULL;
-        else
-        {
+        else {
             t = sn->prev;
             t->next = sn->next;
         }
-    }
-    else if (sn->prev == NULL)
-    {
+    } else if (sn->prev == NULL) {
         t = sn->next;
         t->prev = sn->prev;
-    }
-    else
-    {
+    } else {
         t = sn->prev;
         t->next = sn->next;
         (sn->next)->prev = t;
@@ -58,7 +51,7 @@ static ListNode *popListNode(ListNode *sn)
     return t;
 }
 
-ListNode *findHead(ListNode *sn)
+ListNode* findHead(ListNode* sn)
 {
     while (sn->prev != NULL)
         sn = sn->prev;
@@ -66,22 +59,21 @@ ListNode *findHead(ListNode *sn)
     return sn;
 }
 
-ListNode *removeListNode(ListNode *sn)
+ListNode* removeListNode(ListNode* sn)
 {
     if (!sn)
         return NULL;
 
-    ListNode *t = popListNode(sn);
+    ListNode* t = popListNode(sn);
 
     return t;
 }
 
-ListNode *findListNode(ListNode *sn, int key)
+ListNode* findListNode(ListNode* sn, int key)
 {
-    ListNode *head = findHead(sn);
-    while (head)
-    {
-        if (((int *)head->data)[0] == key)
+    ListNode* head = findHead(sn);
+    while (head) {
+        if (((int*)head->data)[0] == key)
             return head;
 
         head = head->next;
@@ -90,13 +82,13 @@ ListNode *findListNode(ListNode *sn, int key)
     return NULL;
 }
 
-void freeList(ListNode **sn)
+void freeList(ListNode** sn)
 {
     while (*sn)
         *sn = popListNode(*sn);
 }
 
-void setListNodeData(ListNode *sn, void *data, unsigned int size)
+void setListNodeData(ListNode* sn, void* data, unsigned int size)
 {
     if (sn->data)
         free(sn->data);
@@ -105,23 +97,22 @@ void setListNodeData(ListNode *sn, void *data, unsigned int size)
     memcpy(sn->data, data, size);
 }
 
-ListNode *pushIntListNode(ListNode *sn, int data)
+ListNode* pushIntListNode(ListNode* sn, int data)
 {
     sn = pushListNode(sn);
-    int *t = malloc(sizeof(int));
+    int* t = malloc(sizeof(int));
     t[0] = data;
 
-    setListNodeData(sn, t, sizeof(int *));
+    setListNodeData(sn, t, sizeof(int*));
 
     free(t);
     return sn;
 }
 
-void printIntListNode(ListNode *sn)
+void printIntListNode(ListNode* sn)
 {
-    while (sn)
-    {
-        printf("%d ", ((int *)sn->data)[0]);
+    while (sn) {
+        printf("%d ", ((int*)sn->data)[0]);
         sn = sn->next;
     }
     printf("\n");

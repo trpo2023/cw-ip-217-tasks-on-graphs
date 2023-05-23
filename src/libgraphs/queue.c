@@ -9,15 +9,15 @@
 #ifndef QUEUE_C
 #define QUEUE_C
 
-Queue *createQueue()
+Queue* createQueue()
 {
-    Queue *q = malloc(sizeof(Queue));
+    Queue* q = malloc(sizeof(Queue));
     q->front = -1;
     q->rear = -1;
     return q;
 }
 
-int isEmpty(Queue *q)
+int isEmpty(Queue* q)
 {
     if (q->rear == -1)
         return 1;
@@ -25,12 +25,11 @@ int isEmpty(Queue *q)
         return 0;
 }
 
-void addQueue(Queue *q, int value)
+void addQueue(Queue* q, int value)
 {
     if (q->rear == SIZE - 1)
         printf("\nQueue is Full!!");
-    else
-    {
+    else {
         if (q->front == -1)
             q->front = 0;
         q->rear++;
@@ -38,20 +37,16 @@ void addQueue(Queue *q, int value)
     }
 }
 
-int removeQueue(Queue *q)
+int removeQueue(Queue* q)
 {
     int item;
-    if (isEmpty(q))
-    {
+    if (isEmpty(q)) {
         printf("Queue is empty");
         item = -1;
-    }
-    else
-    {
+    } else {
         item = q->items[q->front];
         q->front++;
-        if (q->front > q->rear)
-        {
+        if (q->front > q->rear) {
             printf("Resetting Queue ");
             q->front = q->rear = -1;
         }
@@ -59,15 +54,14 @@ int removeQueue(Queue *q)
     return item;
 }
 
-void printQueue(Queue *q)
+void printQueue(Queue* q)
 {
     int i = q->front;
 
     if (isEmpty(q))
         printf("Queue is empty");
 
-    else
-    {
+    else {
         printf("\nQueue contains \n");
         for (i = q->front; i < q->rear + 1; i++)
             printf("%d ", q->items[i]);
