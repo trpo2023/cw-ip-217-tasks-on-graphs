@@ -147,35 +147,8 @@ void bfs(Graph *graph, int startVertex)
     }
 }
 
-bool getPath(Graph *graph, int startVertex, int endVertex, StackNode **path)
-{
-    Node *temp = graph->head[startVertex];
-    graph->visited[startVertex] = 1;
-
-    if (startVertex == endVertex)
-    {
-        *path = pushIntStackNode(*path, startVertex);
-        return true;
-    }
-
-    while (temp != NULL)
-    {
-        int connectedVertex = temp->vertex;
-
-        if (graph->visited[connectedVertex] == 0)
-            if (getPath(graph, connectedVertex, endVertex, path))
-            {
-                *path = pushIntStackNode(*path, startVertex);
-                return true;
-            }
-
-        temp = temp->next;
-    }
-}
-
 StackNode *getPathAllWrap(Graph *graph, int startVertex, int endVertex)
 {
-    Node *temp = graph->head[startVertex];
     StackNode *paths = NULL;
     if (startVertex < 0 || startVertex > graph->numVertices)
         return paths;
@@ -183,7 +156,7 @@ StackNode *getPathAllWrap(Graph *graph, int startVertex, int endVertex)
     return paths;
 }
 
-static void getPathAll(Graph *graph, int startVertex, int endVertex, StackNode **paths)
+void getPathAll(Graph *graph, int startVertex, int endVertex, StackNode **paths)
 {
     if (startVertex == endVertex)
     {

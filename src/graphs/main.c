@@ -3,9 +3,9 @@
 #include <stdbool.h>
 #include <string.h>
 
-#include "filereader.h"
-#include "graphs.h"
-#include "stacknode.h"
+#include "./libgraphs/filereader.h"
+#include "./libgraphs/graphs.h"
+#include "./libgraphs/stacknode.h"
 
 int main(int argc, char *argv[])
 {
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
             }
             sscanf(buff, "%d %d", &vertexStart, &vertexEnd);
 
-            if((vertexStart < 0 || vertexStart > graphSize) || (vertexEnd < 0 || vertexEnd > graphSize) || (vertexStart == vertexEnd))
+            if ((vertexStart < 0 || vertexStart > graphSize) || (vertexEnd < 0 || vertexEnd > graphSize) || (vertexStart == vertexEnd))
             {
                 printf("Written data is not valid\n\n");
                 break;

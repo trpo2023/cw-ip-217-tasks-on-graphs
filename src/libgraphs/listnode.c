@@ -71,8 +71,8 @@ ListNode *removeListNode(ListNode *sn)
         return NULL;
 
     ListNode *t = popListNode(sn);
-    if (!t->next);
-        return t;
+
+    return t;
 }
 
 ListNode *findListNode(ListNode *sn, int key)
@@ -120,7 +120,7 @@ void printIntListNode(ListNode *sn)
 {
     while (sn)
     {
-        printf("%d ", ((int*)sn->data)[0]);
+        printf("%d ", ((int *)sn->data)[0]);
         sn = sn->next;
     }
     printf("\n");
