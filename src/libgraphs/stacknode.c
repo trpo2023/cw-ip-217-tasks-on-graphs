@@ -1,7 +1,8 @@
-#include "stacknode.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include <libgraphs/stacknode.h>
 
 #ifndef STACKNODE_C
 #define STACKNODE_C

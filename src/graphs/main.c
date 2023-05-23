@@ -3,9 +3,9 @@
 #include <stdbool.h>
 #include <string.h>
 
-#include "./libgraphs/filereader.h"
-#include "./libgraphs/graphs.h"
-#include "./libgraphs/stacknode.h"
+#include <libgraphs/filereader.h>
+#include <libgraphs/graphs.h>
+#include <libgraphs/stacknode.h>
 
 int main(int argc, char *argv[])
 {

@@ -1,7 +1,8 @@
-#include "listnode.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include <libgraphs/listnode.h>
 
 #ifndef LISTNODE_C
 #define LISTNODE_C

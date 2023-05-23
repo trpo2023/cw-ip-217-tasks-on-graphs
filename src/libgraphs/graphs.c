@@ -3,10 +3,10 @@
 #include <string.h>
 #include <stdbool.h>
 
-#include "graphs.h"
-#include "queue.h"
-#include "stacknode.h"
-#include "listnode.h"
+#include <libgraphs/graphs.h>
+#include <libgraphs/queue.h>
+#include <libgraphs/stacknode.h>
+#include <libgraphs/listnode.h>
 
 #ifndef GRAPHS_C
 #define GRAPHS_C

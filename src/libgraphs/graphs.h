@@ -1,6 +1,7 @@
 #include <stdbool.h>
-#include "stacknode.h"
-#include "listnode.h"
+
+#include <libgraphs/stacknode.h>
+#include <libgraphs/listnode.h>
 
 #ifndef GRAPHS_H
 #define GRAPHS_H
