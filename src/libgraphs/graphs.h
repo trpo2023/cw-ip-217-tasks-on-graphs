@@ -26,7 +26,7 @@ typedef struct Edge
 } Edge;
 
 Graph *createGraph(Edge *edges, int edgesSize, int graphSize);
-Edge *matrixToEdges(int **matrix, int matrixSize, int* out_size);
+Edge *matrixToEdges(int **matrix, int matrixSize, int *out_size);
 void printGraph(Graph *graph, int size);
 void clearVisited(Graph *graph);
 void dfs(struct Graph *graph, int vertex);
@@ -36,7 +36,6 @@ void getPathAll(Graph *graph, int startVertex, int endVertex, StackNode **paths)
 int calculateWeightForPath(Graph *graph, StackNode *path);
 StackNode *findMinPath(Graph *graph, StackNode *paths);
 StackNode *findMaxPath(Graph *graph, StackNode *paths);
-
 void printPaths(StackNode *paths);
 void printWithWeightPaths(StackNode *paths);
 void printPath(StackNode *path);

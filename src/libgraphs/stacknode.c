@@ -13,7 +13,6 @@ StackNode *pushStackNode(StackNode *sn, void *data, unsigned int size)
     StackNode *t = (StackNode *)malloc(sizeof(StackNode));
     t->data = malloc(size);
     memcpy(t->data, data, size);
-
     t->prev = sn;
     t->size = sn ? sn->size + 1 : 1;
 
@@ -24,7 +23,6 @@ StackNode *pushStackInStackNode(StackNode *sn, StackNode *data)
 {
     StackNode *t = (StackNode *)malloc(sizeof(StackNode));
     t->data = data;
-
     t->prev = sn;
     t->size = sn ? sn->size + 1 : 1;
 
@@ -36,7 +34,6 @@ StackNode *pushIntStackNode(StackNode *sn, int data)
     int *t = malloc(sizeof(int));
     t[0] = data;
     sn = pushStackNode(sn, t, sizeof(int *));
-
     free(t);
     return sn;
 }
@@ -69,8 +66,9 @@ void printIntStackNode(StackNode *sn)
 
 void recursivePrintIntStackNode(StackNode *sn)
 {
-    if (!sn) return;
-    
+    if (!sn)
+        return;
+
     recursivePrintIntStackNode(sn->prev);
     printf("%d ", ((int *)sn->data)[0]);
 }
@@ -79,12 +77,14 @@ bool isIntStackEqual(StackNode *first, StackNode *second)
 {
     while (first)
     {
-        if(!second) return false;
-        if(*(int *)(first->data) != *(int *)(second->data)) return false;
+        if (!second)
+            return false;
+        if (*(int *)(first->data) != *(int *)(second->data))
+            return false;
         first = first->prev;
         second = second->prev;
     }
-    return true;    
+    return true;
 }
 
 #endif
