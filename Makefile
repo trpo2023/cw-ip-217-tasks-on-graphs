@@ -12,7 +12,7 @@ RM = del
 BIN_DIR = ./bin
 SRC_DIR = ./src
 OBJ_DIR = ./obj
-TEST_DIR = ./tests
+TEST_DIR = ./test
 
 APP_PATH = $(BIN_DIR)/$(APP_NAME)
 LIB_PATH = $(OBJ_DIR)/$(SRC_DIR)/$(LIB_NAME)/$(LIB_NAME).a
@@ -54,10 +54,10 @@ test: $(LIB_PATH) $(TEST_PATH)
 $(TEST_PATH): $(TEST_OBJ) $(LIB_PATH)
 	$(CC) $(TESTFLAGS) $(CFLAGS) $(DEPSFLAGS) -o $@ $^
 
-$(OBJ_DIR)/tests/main.o: tests/main.c
+$(OBJ_DIR)/test/main.o: tests/main.c
 	$(CC) $(TESTFLAGS) $(CFLAGS) $(DEPSFLAGS) -c -o $@ $<
 
-$(OBJ_DIR)/tests/tests.o: tests/tests.c
+$(OBJ_DIR)/test/test.o: tests/test.c
 	$(CC) $(TESTFLAGS) $(CFLAGS) $(DEPSFLAGS) -c -o $@ $<
 
 # RUN
