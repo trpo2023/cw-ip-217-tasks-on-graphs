@@ -194,8 +194,8 @@ int calculateWeightForPath(Graph *graph, StackNode *path)
     int weight = 0;
     while (path->prev)
     {
-        int currentVertex = *((int *)(path->data));
-        int nextVertex = ((int *)(path->prev->data))[0];
+        int currentVertex = *((int *)(path->prev->data));
+        int nextVertex = *((int *)(path->data));
         Node *node = graph->head[currentVertex];
         while (node->vertex != nextVertex)
             node = node->next;
