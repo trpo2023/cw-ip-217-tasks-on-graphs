@@ -61,12 +61,16 @@ void freeStack(StackNode **sn)
 
 void printIntStackNode(StackNode *sn)
 {
-    while (sn)
-    {
-        printf("%d ", ((int *)sn->data)[0]);
-        sn = sn->prev;
-    }
+    recursivePrintIntStackNode(sn);
     printf("\n");
+}
+
+void recursivePrintIntStackNode(StackNode *sn)
+{
+    if (!sn) return;
+    
+    recursivePrintIntStackNode(sn->prev);
+    printf("%d ", ((int *)sn->data)[0]);
 }
 
 #endif
