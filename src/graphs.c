@@ -39,7 +39,7 @@ Graph *createGraph(Edge *edges, int edgesSize, int graphSize)
 
     return graph;
 }
-Edge *matrixToEdges(int **matrix, int matrixSize, int* out_size)
+Edge *matrixToEdges(int **matrix, int matrixSize, int *out_size)
 {
     StackNode *temp = NULL;
 
@@ -54,18 +54,23 @@ Edge *matrixToEdges(int **matrix, int matrixSize, int* out_size)
         }
 
     int edgesSize = temp->size;
-    Edge* edges = malloc(edgesSize * sizeof(Edge));
-    StackNode* headTemp = temp;
+    Edge *edges = malloc(edgesSize * sizeof(Edge));
+    StackNode *headTemp = temp;
     while (temp)
     {
-        Edge* edgeTemp = (Edge*)temp->data;
+        Edge *edgeTemp = (Edge *)temp->data;
         Edge edge = {edgeTemp->src, edgeTemp->vertex, edgeTemp->weight};
-        edges[temp->size-1] = edge;
+        edges[temp->size - 1] = edge;
         temp = temp->prev;
     }
     freeStack(&headTemp);
     *out_size = edgesSize;
-    return edges;     
+    if (edges == NULL)
+    {
+        printf("Graph edges are not detected\n");
+        exit(0);
+    }
+    return edges;
 }
 
 void printGraph(Graph *graph, int size)
