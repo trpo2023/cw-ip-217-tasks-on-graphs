@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 
 #include <libgraphs/stacknode.h>
@@ -72,6 +73,18 @@ void recursivePrintIntStackNode(StackNode *sn)
     
     recursivePrintIntStackNode(sn->prev);
     printf("%d ", ((int *)sn->data)[0]);
+}
+
+bool isIntStackEqual(StackNode *first, StackNode *second)
+{
+    while (first)
+    {
+        if(!second) return false;
+        if(*(int *)(first->data) != *(int *)(second->data)) return false;
+        first = first->prev;
+        second = second->prev;
+    }
+    return true;    
 }
 
 #endif
