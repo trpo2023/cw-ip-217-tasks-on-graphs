@@ -25,6 +25,7 @@ typedef struct Edge
 } Edge;
 
 Graph *createGraph(Edge *edges, int edgesSize, int graphSize);
+Edge *matrixToEdges(int **matrix, int matrixSize, int* out_size);
 void printGraph(Graph *graph, int size);
 void clearVisited(Graph *graph);
 void dfs(struct Graph *graph, int vertex);

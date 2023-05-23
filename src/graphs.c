@@ -39,6 +39,34 @@ Graph *createGraph(Edge *edges, int edgesSize, int graphSize)
 
     return graph;
 }
+Edge *matrixToEdges(int **matrix, int matrixSize, int* out_size)
+{
+    StackNode *temp = NULL;
+
+    for (int i = 0; i < matrixSize; i++)
+        for (int j = 0; j < matrixSize; j++)
+        {
+            if (matrix[i][j] > 0)
+            {
+                Edge edge = {i, j, matrix[i][j]};
+                temp = pushStackNode(temp, &edge, sizeof(Edge));
+            }
+        }
+
+    int edgesSize = temp->size;
+    Edge* edges = malloc(edgesSize * sizeof(Edge));
+    StackNode* headTemp = temp;
+    while (temp)
+    {
+        Edge* edgeTemp = (Edge*)temp->data;
+        Edge edge = {edgeTemp->src, edgeTemp->vertex, edgeTemp->weight};
+        edges[temp->size-1] = edge;
+        temp = temp->prev;
+    }
+    freeStack(&headTemp);
+    *out_size = edgesSize;
+    return edges;     
+}
 
 void printGraph(Graph *graph, int size)
 {
@@ -203,7 +231,8 @@ int calculateWeightForPath(Graph *graph, StackNode *path)
 
 StackNode *findMinPath(Graph *graph, StackNode *paths)
 {
-    if(!paths) return NULL;
+    if (!paths)
+        return NULL;
     StackNode *minPath = paths->data;
     int minPathWeight = calculateWeightForPath(graph, paths->data);
     paths = paths->prev;
@@ -222,7 +251,8 @@ StackNode *findMinPath(Graph *graph, StackNode *paths)
 
 StackNode *findMaxPath(Graph *graph, StackNode *paths)
 {
-    if(!paths) return NULL;
+    if (!paths)
+        return NULL;
     StackNode *maxPath = paths->data;
     int maxPathWeight = calculateWeightForPath(graph, paths->data);
     paths = paths->prev;
@@ -258,7 +288,7 @@ void freePaths(StackNode *paths)
 {
     while (paths)
     {
-        StackNode* t = (StackNode*)(paths->data);
+        StackNode *t = (StackNode *)(paths->data);
         freeStack(&t);
         paths = paths->prev;
     }
