@@ -7,6 +7,7 @@ CFLAGS = -Wall -Werror -I src
 LIBS =
 DEPSFLAGS = -MMD
 TESTFLAGS = -I thirdparty
+RM = del
 
 BIN_DIR = ./bin
 SRC_DIR = ./src
