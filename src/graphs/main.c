@@ -37,13 +37,18 @@ int main(int argc, char *argv[])
             }
             sscanf(buff, "%d %d", &vertexStart, &vertexEnd);
 
-            if ((vertexStart < 0 || vertexStart > graphSize) || (vertexEnd < 0 || vertexEnd > graphSize) || (vertexStart == vertexEnd))
+            if (((vertexStart < 0 || vertexStart > graphSize - 1) || (vertexEnd < 0 || vertexEnd > graphSize - 1)) || (vertexStart == vertexEnd))
             {
                 printf("Written data is not valid\n\n");
                 break;
             }
             printf("\nSUMMARY INFO\n");
             StackNode *paths = getPathAllWrap(graph, vertexStart, vertexEnd);
+            if (!paths)
+            {
+                printf("Path not found\n");
+                break;
+            }
             printf("Detected paths:\n");
             printPaths(paths);
             printf("\n");
