@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     if (argv[1])
         matrix = readMatrixFile(argv[1], &graphSize);
     else
-        matrix = readMatrixFile("./data/graph1.txt", &graphSize);
+        matrix = readMatrixFile("./data/graph_test.txt", &graphSize);
 
     Edge *edges = matrixToEdges(matrix, graphSize, &edgesSize);
     Graph *graph = createGraph(edges, edgesSize, graphSize);
