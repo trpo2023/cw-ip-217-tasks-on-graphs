@@ -14,5 +14,6 @@ StackNode *pushIntStackNode(StackNode *sn, int data);
 StackNode *popStackNode(StackNode *sn);
 void freeStack(StackNode **sn);
 void printIntStackNode(StackNode *sn);
+void recursivePrintIntStackNode(StackNode *sn);
 
 #endif

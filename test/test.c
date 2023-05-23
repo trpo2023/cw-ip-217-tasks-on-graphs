@@ -3,14 +3,15 @@
 
 #include <stdio.h>
 #define FILENAME "test_input.txt"
+
 CTEST(INPUT_CHECK, READER1)
 {
-    const char* filename = FILENAME;
+    const char *filename = FILENAME;
     FILE *fp = fopen(filename, "r");
     bool expec = true;
     if (fp == NULL)
     {
-        expec =false;
+        expec = false;
     }
     fclose(fp);
     bool real = check_file_exists(filename);
@@ -20,12 +21,12 @@ CTEST(INPUT_CHECK, READER1)
 
 CTEST(INPUT_CHECK, READER2)
 {
-    const char* filename = FILENAME;
+    const char *filename = FILENAME;
     FILE *fp = fopen(filename, "r");
     bool expec = false;
     if (fp == NULL)
     {
-        expec =true;
+        expec = true;
     }
     fclose(fp);
     bool real = check_file_exists(filename);
@@ -35,19 +36,19 @@ CTEST(INPUT_CHECK, READER2)
 
 CTEST(INPUT_CHECK, FIRST_STRING1)
 {
-    const char* filename = FILENAME;
+    const char *filename = FILENAME;
     FILE *fp = fopen(filename, "r");
     int n;
     bool expec = true;
     if (fscanf(fp, "%d", &n) != 1)
     {
         fclose(fp);
-        expec= false;
+        expec = false;
     }
     fclose(fp);
     if (n < 0)
     {
-        expec= false;
+        expec = false;
     }
     bool real = check_file_exists(filename);
 
@@ -56,19 +57,19 @@ CTEST(INPUT_CHECK, FIRST_STRING1)
 
 CTEST(INPUT_CHECK, FIRST_STRING2)
 {
-    const char* filename = FILENAME;
+    const char *filename = FILENAME;
     FILE *fp = fopen(filename, "r");
     int n;
     bool expec = false;
     if (fscanf(fp, "%d", &n) != 1)
     {
         fclose(fp);
-        expec= true;
+        expec = true;
     }
     fclose(fp);
     if (n < 0)
     {
-        expec= true;
+        expec = true;
     }
     bool real = check_file_exists(filename);
 
@@ -77,13 +78,13 @@ CTEST(INPUT_CHECK, FIRST_STRING2)
 
 CTEST(INPUT_CHECK, CHECK_MATRIX1)
 {
-    const char* filename = FILENAME;
+    const char *filename = FILENAME;
     FILE *fp = fopen(filename, "r");
     int n;
     if (fscanf(fp, "%d", &n) != 1)
     {
         fclose(fp);
-        expec=false;
+        expec = false;
     }
     int x;
     for (int i = 0; i < n; i++)
@@ -93,12 +94,12 @@ CTEST(INPUT_CHECK, CHECK_MATRIX1)
             if (fscanf(fp, "%d", &x) != 1)
             {
                 fclose(fp);
-                expec= false;
+                expec = false;
             }
             if (!check_matrix_element(x, i + 1, j + 1))
             {
                 fclose(fp);
-                expec= false;
+                expec = false;
             }
         }
     }
@@ -108,23 +109,23 @@ CTEST(INPUT_CHECK, CHECK_MATRIX1)
     if (end_pos != curr_pos)
     {
         fclose(fp);
-        expec=false;
+        expec = false;
     }
     fclose(fp);
-    expec=true;
+    expec = true;
     bool real = check_file_exists(filename);
     ASSERT_EQUAL(expec, real);
 }
 
 CTEST(INPUT_CHECK, CHECK_MATRIX2)
 {
-    const char* filename = FILENAME;
+    const char *filename = FILENAME;
     FILE *fp = fopen(filename, "r");
     int n;
     if (fscanf(fp, "%d", &n) != 1)
     {
         fclose(fp);
-        expec=true;
+        expec = true;
     }
     int x;
     for (int i = 0; i < n; i++)
@@ -134,12 +135,12 @@ CTEST(INPUT_CHECK, CHECK_MATRIX2)
             if (fscanf(fp, "%d", &x) != 1)
             {
                 fclose(fp);
-                expec= true;
+                expec = true;
             }
             if (!check_matrix_element(x, i + 1, j + 1))
             {
                 fclose(fp);
-                expec= true;
+                expec = true;
             }
         }
     }
@@ -149,10 +150,10 @@ CTEST(INPUT_CHECK, CHECK_MATRIX2)
     if (end_pos != curr_pos)
     {
         fclose(fp);
-        expec=true;
+        expec = true;
     }
     fclose(fp);
-    expec=false;
+    expec = false;
     bool real = check_file_exists(filename);
     ASSERT_EQUAL(expec, real);
 }
